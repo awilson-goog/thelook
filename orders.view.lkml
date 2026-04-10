@@ -3,7 +3,7 @@ view: orders {
   dimension: id {
     primary_key: yes
     type: number
-    sql: ${TABLE}.id ;;
+    sql: ${TABLE}.order_id ;;
   }
 
   dimension_group: created {
@@ -41,8 +41,8 @@ view: orders {
     value_format_name: decimal_2
     sql:
       (SELECT SUM(order_items.sale_price)
-      FROM order_items
-      WHERE order_items.order_id = ${TABLE}.id) ;;
+      FROM `bigquery-public-data.thelook_ecommerce.order_items` AS order_items
+      WHERE order_items.order_id = ${TABLE}.order_id) ;;
   }
 
   dimension: total_cost_of_order {
@@ -50,9 +50,9 @@ view: orders {
     value_format_name: decimal_2
     sql:
         (SELECT SUM(inventory_items.cost)
-        FROM order_items
-        LEFT JOIN inventory_items ON order_items.inventory_item_id = inventory_items.id
-        WHERE order_items.order_id = ${TABLE}.id) ;;
+        FROM `bigquery-public-data.thelook_ecommerce.order_items` AS order_items
+        LEFT JOIN `bigquery-public-data.thelook_ecommerce.inventory_items` AS inventory_items ON order_items.inventory_item_id = inventory_items.id
+        WHERE order_items.order_id = ${TABLE}.order_id) ;;
   }
 
   dimension: order_profit {
@@ -65,8 +65,8 @@ view: orders {
     type: number
     sql:
       (SELECT COUNT(*)
-      FROM orders o
-      WHERE o.id < ${TABLE}.id
+      FROM `bigquery-public-data.thelook_ecommerce.orders` o
+      WHERE o.order_id < ${TABLE}.order_id
       AND o.user_id = ${TABLE}.user_id) + 1
       ;;
   }

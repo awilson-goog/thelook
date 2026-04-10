@@ -62,22 +62,22 @@ view: users {
 
   dimension: lat {
     type: number
-    sql: ${TABLE}.lat ;;
+    sql: ${TABLE}.latitude ;;
   }
 
   dimension: lng {
     type: number
-    sql: ${TABLE}.lng ;;
+    sql: ${TABLE}.longitude ;;
   }
 
   dimension: postcode {
     type: string
-    sql: ${TABLE}.postcode ;;
+    sql: ${TABLE}.postal_code ;;
   }
 
   dimension: zipcode {
     type: zipcode
-    sql: ${TABLE}.postcode ;;
+    sql: ${TABLE}.postal_code ;;
   }
 
   dimension: state {
