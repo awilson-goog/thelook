@@ -21,7 +21,7 @@ The focus will be on the following product categories, identified as having the 
 | Metric | Q2 Target | Goal |
 | :---- | :---- | :---- |
 | **Margin Recovery Goal** | $1.75M | Total margin recovered via targeted markdowns. |
-| **Inventory Health Score** | Improve by 15% | A composite score based on DII, Gross Margin, and Stock-Out Risk. |
+| **Inventory Health Score** | Improve by 15% | A composite score based on DII and Gross Margin. |
 | **Markdown Potential** | 10% Reduction | Percentage of total inventory value designated for markdown. |
 | **Inventory Turnover Ratio** | Increase by 0.5x | Measure of inventory velocity. |
 
@@ -29,14 +29,12 @@ The focus will be on the following product categories, identified as having the 
 
 1. **Inventory Health Score (Measure):** A weighted metric to rank liquidation priority.  
 2. **Potential Margin Loss (Measure):** Projected loss based on current cost and DII.  
-3. **Stock-Out Risk (Dimension):** A segmentation dimension for inventory that is currently critical but faces high demand risk (to be excluded from liquidation focus).  
 4. **Days in Inventory (DII) by Product:** Enhanced visibility for stale inventory identification.
 
 ## Calculation Logic Definitions
 
-*   **Inventory Health Score:** `(0.5 * (1 - DII/365)) + (0.5 * (Margin %))`. Scaled 0-100. (Items with Stock-Out Risk = 'High' are capped at 100).
+*   **Inventory Health Score:** `(0.5 * (1 - DII/365)) + (0.5 * (Margin %))`. Scaled 0-100.
 *   **Potential Margin Loss:** `Inventory Cost * (Days in Inventory / 365)`.
-*   **Stock-Out Risk:** `High` if `30-day Sales Units > Current Inventory Units`; `Medium` if `2 * 30-day Sales Units > Current Inventory Units`; `Low` otherwise.
 *   **Inventory Turnover Ratio:** `Sold Cost (All Time) / Total Inventory Cost (All Time)`.
 
 
