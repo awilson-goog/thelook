@@ -33,8 +33,7 @@ The focus will be on the following product categories, identified as having the 
 
 ## Calculation Logic Definitions
 
-*   **Inventory Health Score:** `(0.5 * (1 - DII/365)) + (0.5 * (Margin %))`. Scaled 0-100.
-*   **Potential Margin Loss:** `Inventory Cost * (Days in Inventory / 365)`.
-*   **Inventory Turnover Ratio:** `Sold Cost (All Time) / Total Inventory Cost (All Time)`.
+*   **Inventory Health Score:** (0.5 * (1 - DII/800)) + (0.5 * (Margin %))
+*   **Potential Margin Loss:** Assign a 50% loss on the cost of items aged over 120 days and a 20% loss on those aged between 90 and 120 days.
 
 
