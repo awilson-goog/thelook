@@ -41,8 +41,28 @@ view: products {
     sql: ${TABLE}.sku ;;
   }
 
+  # --- Strategic Initiative Dimensions ---
+
+  dimension: stock_out_risk {
+    type: string
+    description: "Segmentation for inventory critical but faces high demand risk."
+    sql: CASE
+           WHEN ${rank} < 10 THEN 'High Risk'
+           WHEN ${rank} < 50 THEN 'Medium Risk'
+           ELSE 'Low Risk'
+         END ;;
+  }
+
+  # --- Measures ---
+
   measure: count {
     type: count
     drill_fields: [id, item_name, inventory_items.count]
+  }
+
+  measure: total_retail_price {
+    type: sum
+    sql: ${retail_price} ;;
+    value_format_name: usd
   }
 }

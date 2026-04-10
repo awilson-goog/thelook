@@ -52,6 +52,23 @@ view: order_items {
     sql: ${TABLE}.sale_price ;;
   }
 
+  # --- Strategic Initiative Dimensions ---
+
+  dimension: gross_margin {
+    type: number
+    description: "Difference between sale price and inventory cost."
+    sql: ${sale_price} - ${inventory_items.cost} ;;
+    value_format_name: usd
+  }
+
+  dimension: margin_percentage {
+    type: number
+    sql: SAFE_DIVIDE(${gross_margin}, ${sale_price}) ;;
+    value_format_name: percent_2
+  }
+
+  # --- Measures ---
+
   measure: count {
     type: count
     drill_fields: [id, inventory_items.id, orders.id]
@@ -67,5 +84,17 @@ view: order_items {
     type: average
     sql: ${sale_price} ;;
     value_format: "$#,##0.00"
+  }
+
+  measure: total_gross_margin {
+    type: sum
+    sql: ${gross_margin} ;;
+    value_format_name: usd
+  }
+
+  measure: average_gross_margin {
+    type: average
+    sql: ${gross_margin} ;;
+    value_format_name: usd
   }
 }
