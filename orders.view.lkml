@@ -1,4 +1,5 @@
 view: orders {
+  sql_table_name: `bigquery-public-data.thelook_ecommerce.orders` ;;
   dimension: id {
     primary_key: yes
     type: number
@@ -41,7 +42,7 @@ view: orders {
     sql:
       (SELECT SUM(order_items.sale_price)
       FROM order_items
-      WHERE order_items.order_id = ${id}) ;;
+      WHERE order_items.order_id = ${TABLE}.id) ;;
   }
 
   dimension: total_cost_of_order {
@@ -51,7 +52,7 @@ view: orders {
         (SELECT SUM(inventory_items.cost)
         FROM order_items
         LEFT JOIN inventory_items ON order_items.inventory_item_id = inventory_items.id
-        WHERE order_items.order_id = ${id}) ;;
+        WHERE order_items.order_id = ${TABLE}.id) ;;
   }
 
   dimension: order_profit {

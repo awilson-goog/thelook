@@ -1,0 +1,12 @@
+.env
+node_modules/
+.gemini/
+.vscode/
+copy_skills.hs
+notes.md
+package-lock.json
+package.json
+start-mcp.sh
+toolbox
+tools.yaml
+tools.yaml.bak

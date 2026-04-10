@@ -1,4 +1,5 @@
 view: users {
+  sql_table_name: `bigquery-public-data.thelook_ecommerce.users` ;;
   dimension: id {
     primary_key: yes
     type: number
@@ -52,6 +53,11 @@ view: users {
   dimension: last_name {
     type: string
     sql: ${TABLE}.last_name ;;
+  }
+
+  dimension: full_name {
+    type: string
+    sql: CONCAT(${first_name}, ' ', ${last_name}) ;;
   }
 
   dimension: lat {
