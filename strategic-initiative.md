@@ -32,7 +32,7 @@ The focus will be on the following product categories, identified as having the 
 4. **Days in Inventory (DII) by Product:** Enhanced visibility for stale inventory identification.
 
 ## Calculation Logic Definitions
-
+Make changes only in inventory_items view.
 *   **Inventory Health Score:** (0.5 * (1 - DII/800)) + (0.5 * (Margin %))
 *   **Potential Margin Loss:** Assign a 50% loss on the cost of items aged over 120 days and a 20% loss on those aged between 90 and 120 days.
 
